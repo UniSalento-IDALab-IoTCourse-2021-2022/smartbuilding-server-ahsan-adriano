@@ -9,8 +9,8 @@ const app = express();
 
 const wss = new WebSocket.Server({ port: 3001 });
 
-var client = mqtt.connect("mqtt://mqtt.eclipseprojects.io",{clientId:"mqttjs012"});
-//var client = mqtt.connect("mqtt://20.216.178.106:1883");
+//var client = mqtt.connect("mqtt://mqtt.eclipseprojects.io",{clientId:"mqttjs012"});
+var client = mqtt.connect("mqtt://20.216.178.106:1883");
 
 
 
@@ -49,6 +49,7 @@ client.on("message",function(topic, message, packet){
                 throw err;
             }
             console.log("Connected to MySQLDB!");
+
 
             var sql = "CREATE TABLE IF NOT EXISTS sensordth11 (timestamp  TIMESTAMP, sensor VARCHAR(255), temperature DECIMAL (3,1))";
             con.query(sql, function (err, result) {
